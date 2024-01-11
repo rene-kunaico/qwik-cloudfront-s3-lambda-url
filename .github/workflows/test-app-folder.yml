@@ -21,7 +21,7 @@ jobs:
       - name: Deploy to test-app-folder
         run: |
           if [ "${{ github.event_name }}" == "pull_request" ] && [ "${{ github.event.action }}" == "closed" ] && [ "${{ github.event.pull_request.merged }}" == "true" ]; then
-            aws s3 sync test-app-folder/ s3://your-s3-bucket/test-app-folder/
+            aws s3 sync test-app-folder/ s3://!Ref StaticBucketName/test-app-folder/
           fi
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
